@@ -1,7 +1,8 @@
 #include <cstddef>
+#include <ostream>
 #include <string.h>
 
-#include "Navmii.ProgrammingTest.CowAsciiString.h"
+#include "Navmii.ProgrammingTest.SimpleAsciiString.h"
 
 using namespace Navmii;
 using namespace ProgrammingTest;
@@ -9,17 +10,17 @@ using namespace ProgrammingTest;
 #define MAX(x, y) (((x) > (y)) ? (x) : (y))
 #define MIN(x, y) (((x) < (y)) ? (x) : (y))
 
-CowAsciiString::CowAsciiString() : m_buf(NULL), m_length(0) {
+SimpleAsciiString::SimpleAsciiString() : m_buf(NULL), m_length(0) {
 }
 
-CowAsciiString::CowAsciiString(const char* source) {
+SimpleAsciiString::SimpleAsciiString(const char* source) {
 
     m_buf = NULL;
     m_length = 0;
     Assign(source);
 }
 
-CowAsciiString::CowAsciiString(const char* source, int lengh) {
+SimpleAsciiString::SimpleAsciiString(const char* source, int lengh) {
 
     if (NULL != source && 0 < lengh) {
         m_length = lengh;
@@ -31,21 +32,21 @@ CowAsciiString::CowAsciiString(const char* source, int lengh) {
     }
 }
 
-CowAsciiString::CowAsciiString(const Navmii::ProgrammingTest::CowAsciiString& other) {
+SimpleAsciiString::SimpleAsciiString(const Navmii::ProgrammingTest::SimpleAsciiString& other) {
 
     m_buf = NULL;
     m_length = 0;
     Assign(other);
 }
 
-CowAsciiString::~CowAsciiString() {
+SimpleAsciiString::~SimpleAsciiString() {
 
     if (NULL != m_buf) {
         delete m_buf;
     }
 }
 
-char CowAsciiString::operator [] (int index) const {
+char SimpleAsciiString::operator [] (int index) const {
 
     if (NULL != m_buf && 0 <= index && index < m_length) {
         return m_buf[index];
@@ -53,13 +54,13 @@ char CowAsciiString::operator [] (int index) const {
         return '\0';
     }
 }
-CowAsciiString& CowAsciiString::operator += (const CowAsciiString& other) {
+SimpleAsciiString& SimpleAsciiString::operator += (const SimpleAsciiString& other) {
 
     Append(other);
     return *this;
 }
 
-CowAsciiString CowAsciiString::operator + (const CowAsciiString& other) const {
+SimpleAsciiString SimpleAsciiString::operator + (const SimpleAsciiString& other) const {
 
     int lengh = m_length + other.m_length;
     char* buf = new char[lengh];
@@ -70,42 +71,42 @@ CowAsciiString CowAsciiString::operator + (const CowAsciiString& other) const {
         memcpy(buf + m_length, other.m_buf, other.m_length);
     }
 
-    CowAsciiString str;
+    SimpleAsciiString str;
     str.m_buf = buf;
     str.m_length = lengh;
 
     return str;
 }
 
-bool CowAsciiString::operator == (const CowAsciiString& other) const {
+bool SimpleAsciiString::operator == (const SimpleAsciiString& other) const {
 
     return Equals(other);
 }
 
-bool CowAsciiString::operator != (const CowAsciiString& other) const {
+bool SimpleAsciiString::operator != (const SimpleAsciiString& other) const {
 
     return !(*this == other);
 }
 
-CowAsciiString& CowAsciiString::operator = (const char* source) {
+SimpleAsciiString& SimpleAsciiString::operator = (const char* source) {
 
     Assign(source);
     return *this;
 }
 
-int CowAsciiString::GetLength() const {
+int SimpleAsciiString::GetLength() const {
 
     return m_length;
 }
 
-void CowAsciiString::SetChar(int index, char character) {
+void SimpleAsciiString::SetChar(int index, char character) {
 
     if (NULL != m_buf && 0 < index && index < m_length) {
         m_buf[index] = character;
     }
 }
 
-char CowAsciiString::GetChar(int index) const {
+char SimpleAsciiString::GetChar(int index) const {
 
     if (NULL != m_buf && 0 < index && index < m_length) {
         return m_buf[index];
@@ -113,12 +114,12 @@ char CowAsciiString::GetChar(int index) const {
     return '\0';
 }
 
-void CowAsciiString::Append(char character) {
+void SimpleAsciiString::Append(char character) {
 
-    Append(CowAsciiString(&character, 1));
+    Append(SimpleAsciiString(&character, 1));
 }
 
-void CowAsciiString::Append(const CowAsciiString& other) {
+void SimpleAsciiString::Append(const SimpleAsciiString& other) {
 
     if (other.GetLength() != 0) {
         int lengh = m_length + other.m_length;
@@ -137,7 +138,7 @@ void CowAsciiString::Append(const CowAsciiString& other) {
     }
 }
 
-void CowAsciiString::Insert(const CowAsciiString& other, int index) {
+void SimpleAsciiString::Insert(const SimpleAsciiString& other, int index) {
 
     if (other.GetLength() != 0 && 0 <= index && (index < MAX(m_length, 1))) {
         int lengh = m_length + other.m_length;
@@ -158,7 +159,7 @@ void CowAsciiString::Insert(const CowAsciiString& other, int index) {
 
 }
 
-void CowAsciiString::Remove(int startingIndex, int removedCharactersCount) {
+void SimpleAsciiString::Remove(int startingIndex, int removedCharactersCount) {
 
     if (0 <= startingIndex && startingIndex < m_length && 0 < removedCharactersCount) {
         memmove(m_buf + startingIndex, m_buf + startingIndex + removedCharactersCount, removedCharactersCount);
@@ -166,12 +167,12 @@ void CowAsciiString::Remove(int startingIndex, int removedCharactersCount) {
     }
 }
 
-bool CowAsciiString::Equals(const CowAsciiString& other) const {
+bool SimpleAsciiString::Equals(const SimpleAsciiString& other) const {
 
     return (m_length == other.m_length && (memcmp(m_buf, other.m_buf, m_length) == 0));
 }
 
-bool CowAsciiString::Find(char character, /*out*/int& foundIndex) const {
+bool SimpleAsciiString::Find(char character, /*out*/int& foundIndex) const {
 
     for (int i = 0; i < m_length; ++i) {
         if (m_buf[i] == character) {
@@ -183,7 +184,7 @@ bool CowAsciiString::Find(char character, /*out*/int& foundIndex) const {
     return false;
 }
 
-bool CowAsciiString::Find(const CowAsciiString& substring, /*out*/int& foundIndex) const {
+bool SimpleAsciiString::Find(const SimpleAsciiString& substring, /*out*/int& foundIndex) const {
 
     if (NULL != m_buf) {
         char* p = strstr(m_buf, substring.m_buf);
@@ -195,7 +196,7 @@ bool CowAsciiString::Find(const CowAsciiString& substring, /*out*/int& foundInde
     return false;
 }
 
-void CowAsciiString::Assign(const char* source) {
+void SimpleAsciiString::Assign(const char* source) {
 
     if (NULL != source) {
         int length = strlen(source);
@@ -203,7 +204,7 @@ void CowAsciiString::Assign(const char* source) {
     }
 }
 
-void CowAsciiString::Assign(const char* source, int length) {
+void SimpleAsciiString::Assign(const char* source, int length) {
 
     if (NULL != source) {
         if (NULL != m_buf) {
@@ -218,12 +219,12 @@ void CowAsciiString::Assign(const char* source, int length) {
     }
 }
 
-void CowAsciiString::Assign(const CowAsciiString& other) {
+void SimpleAsciiString::Assign(const SimpleAsciiString& other) {
 
     Assign(other.m_buf, other.m_length);
 }
 
-void CowAsciiString::ToPlainString(/*out*/char* outputBuffer, int maxOutputBufferSize) const {
+void SimpleAsciiString::ToPlainString(/*out*/char* outputBuffer, int maxOutputBufferSize) const {
 
     if (NULL != outputBuffer && 1 < maxOutputBufferSize) {
         int lengh = MIN(m_length, maxOutputBufferSize - 1);
@@ -232,7 +233,7 @@ void CowAsciiString::ToPlainString(/*out*/char* outputBuffer, int maxOutputBuffe
     }
 }
 
-std::ostream& Navmii::ProgrammingTest::operator<< (std::ostream& os, const CowAsciiString& str) {
+std::ostream& Navmii::ProgrammingTest::operator<< (std::ostream& os, const SimpleAsciiString& str) {
     os << "\"" << str.m_buf << "\"";
     return os;
 }

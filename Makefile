@@ -2,7 +2,7 @@ CXX=g++
 CXXFLAGS=-c -g -Wall
 LDFLAGS=
 INCLUDES= -I./include
-SOURCES=main.cpp Navmii.ProgrammingTest.CowAsciiString.cpp
+SOURCES=main.cpp Navmii.ProgrammingTest.SimpleAsciiString.cpp
 OBJECTS=$(SOURCES:.cpp=.o)
 TARGET=test
 
