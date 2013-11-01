@@ -52,7 +52,8 @@
 
 */
 
-#pragma once
+#ifndef NAVMII_PROGRAMMING_TEST_COW_ASCII_STRING_H
+#define NAVMII_PROGRAMMING_TEST_COW_ASCII_STRING_H
 
 namespace Navmii { namespace ProgrammingTest
 {
@@ -272,3 +273,6 @@ namespace Navmii { namespace ProgrammingTest
         /**@}*/
     };
 }}
+
+#endif // NAVMII_PROGRAMMING_TEST_COW_ASCII_STRING_H
+
