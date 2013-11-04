@@ -1,8 +1,8 @@
 #include <mystring.h>
 
-void *mymemcpy(void *dest, const void *src, int n) {
+void *mymemcpy(void *dest, const void *src, size_t n) {
 
-    int i;
+    size_t i;
     for (i = 0; i < n; ++i) {
         *((char *) dest + i) = *((const char *) src + i);
     }
