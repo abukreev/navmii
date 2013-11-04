@@ -2,6 +2,8 @@
 #include <ostream>
 #include <string.h>
 
+#include <mymemcpy.h>
+
 #include "Navmii.ProgrammingTest.SimpleAsciiString.h"
 
 using namespace Navmii;
@@ -25,7 +27,7 @@ SimpleAsciiString::SimpleAsciiString(const char* source, int lengh) {
     if (NULL != source && 0 < lengh) {
         m_length = lengh;
         m_buf = new char[m_length];
-        memcpy(m_buf, source, m_length);
+        mymemcpy(m_buf, source, m_length);
     } else {
         m_buf = NULL;
         m_length = 0;
@@ -65,10 +67,10 @@ SimpleAsciiString SimpleAsciiString::operator + (const SimpleAsciiString& other)
     int lengh = m_length + other.m_length;
     char* buf = new char[lengh];
     if (0 < m_length) {
-        memcpy(buf, m_buf, m_length);
+        mymemcpy(buf, m_buf, m_length);
     }
     if (0 < other.m_length) {
-        memcpy(buf + m_length, other.m_buf, other.m_length);
+        mymemcpy(buf + m_length, other.m_buf, other.m_length);
     }
 
     SimpleAsciiString str;
@@ -125,10 +127,10 @@ void SimpleAsciiString::Append(const SimpleAsciiString& other) {
         int lengh = m_length + other.m_length;
         char* buf = new char[lengh];
         if (0 < m_length) {
-            memcpy(buf, m_buf, m_length);
+            mymemcpy(buf, m_buf, m_length);
         }
         if (0 < other.m_length) {
-            memcpy(buf + m_length, other.m_buf, other.m_length);
+            mymemcpy(buf + m_length, other.m_buf, other.m_length);
         }
         if (NULL != m_buf) {
             delete m_buf;
@@ -144,11 +146,11 @@ void SimpleAsciiString::Insert(const SimpleAsciiString& other, int index) {
         int lengh = m_length + other.m_length;
         char* buf = new char[lengh];
         if (0 < index) {
-            memcpy(buf, m_buf, index);
+            mymemcpy(buf, m_buf, index);
         }
-        memcpy(buf + index, other.m_buf, other.m_length);
+        mymemcpy(buf + index, other.m_buf, other.m_length);
         if (index < m_length) {
-            memcpy(buf + index + other.m_length, m_buf + index, m_length - index);
+            mymemcpy(buf + index + other.m_length, m_buf + index, m_length - index);
         }
         if (NULL != m_buf) {
             delete m_buf;
@@ -214,7 +216,7 @@ void SimpleAsciiString::Assign(const char* source, int length) {
         if (length > 0) {
             m_length = length;
             m_buf = new char[m_length];
-            memcpy(m_buf, source, m_length);
+            mymemcpy(m_buf, source, m_length);
         }
     }
 }
@@ -228,7 +230,7 @@ void SimpleAsciiString::ToPlainString(/*out*/char* outputBuffer, int maxOutputBu
 
     if (NULL != outputBuffer && 1 < maxOutputBufferSize) {
         int lengh = MIN(m_length, maxOutputBufferSize - 1);
-        memcpy(outputBuffer, m_buf, lengh);
+        mymemcpy(outputBuffer, m_buf, lengh);
         outputBuffer[lengh] = '\0';
     }
 }

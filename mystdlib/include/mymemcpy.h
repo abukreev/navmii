@@ -1,9 +1,15 @@
 #ifndef MEMCPY_H
 #define MEMCPY_H
 
-#include <size_t.h>
+#ifdef __cplusplus
+extern "C" {
+#endif
 
-void *mymemcpy(void *dest, const void *src, size_t n);
+void *mymemcpy(void *dest, const void *src, int n);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif // MEMCPY_H
 

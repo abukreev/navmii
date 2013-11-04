@@ -1,7 +1,7 @@
 CXX=g++
 CXXFLAGS=-c -g -Wall
-LDFLAGS=
-INCLUDES= -I./include
+LDFLAGS=-L./mystdlib -lmystdlib
+INCLUDES= -I./mystdlib/include
 SOURCES=main.cpp Navmii.ProgrammingTest.SimpleAsciiString.cpp
 OBJECTS=$(SOURCES:.cpp=.o)
 TARGET=test
@@ -9,7 +9,7 @@ TARGET=test
 all: $(SOURCES) $(TARGET)
 
 $(TARGET): $(OBJECTS)
-	$(CXX) $(LDFLAGS) $(OBJECTS) -o $@
+	$(CXX) $(OBJECTS) $(LDFLAGS) -o $@
 
 .cpp.o: $(SOURCES)
 	$(CXX) $(CXXFLAGS) $(INCLUDES) $< -o $@
