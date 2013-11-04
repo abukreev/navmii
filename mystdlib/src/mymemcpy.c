@@ -6,5 +6,6 @@ void *mymemcpy(void *dest, const void *src, int n) {
     for (i = 0; i < n; ++i) {
         *((char *) dest + i) = *((const char *) src + i);
     }
+    return dest;
 }
 
