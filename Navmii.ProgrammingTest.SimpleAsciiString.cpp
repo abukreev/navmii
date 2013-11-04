@@ -171,7 +171,7 @@ void SimpleAsciiString::Remove(int startingIndex, int removedCharactersCount) {
 
 bool SimpleAsciiString::Equals(const SimpleAsciiString& other) const {
 
-    return (m_length == other.m_length && (memcmp(m_buf, other.m_buf, m_length) == 0));
+    return (m_length == other.m_length && (mymemcmp(m_buf, other.m_buf, m_length) == 0));
 }
 
 bool SimpleAsciiString::Find(char character, /*out*/int& foundIndex) const {
