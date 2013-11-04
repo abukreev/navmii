@@ -1,4 +1,4 @@
-#include <mymemcpy.h>
+#include <mystring.h>
 
 void *mymemcpy(void *dest, const void *src, int n) {
 

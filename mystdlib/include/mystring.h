@@ -1,15 +1,15 @@
-#ifndef MEMCPY_H
-#define MEMCPY_H
+#ifndef MYSTRING_H
+#define MYSTRING_H
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
 void *mymemcpy(void *dest, const void *src, int n);
+int mystrlen(const char *s);
 
 #ifdef __cplusplus
 }
 #endif
 
-#endif // MEMCPY_H
-
+#endif // MYSTRING_H

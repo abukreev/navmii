@@ -2,7 +2,7 @@
 #include <ostream>
 #include <string.h>
 
-#include <mymemcpy.h>
+#include <mystring.h>
 
 #include "Navmii.ProgrammingTest.SimpleAsciiString.h"
 
@@ -201,7 +201,7 @@ bool SimpleAsciiString::Find(const SimpleAsciiString& substring, /*out*/int& fou
 void SimpleAsciiString::Assign(const char* source) {
 
     if (NULL != source) {
-        int length = strlen(source);
+        int length = mystrlen(source);
         Assign(source, length);
     }
 }
