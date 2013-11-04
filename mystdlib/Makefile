@@ -1,13 +1,13 @@
+INCLUDEDIR=./include
+SOURCEDIR=./src
+OBJECTDIR=./obj
 CC=gcc
+CFLAGS=-c -g -Wall -I$(INCLUDEDIR)
 AR=ar
 ARFLAGS=-r
-INCLUDEDIR=include
-SOURCEDIR=src
-OBJECTDIR=obj
-CFLAGS=-c -g -Wall -I$(INCLUDEDIR)
-SOURCEFILES=mymemcpy.c
-SOURCES=$(SOURCEFILES:%.c=$(SOURCEDIR)/%.c)
-OBJECTS=$(SOURCEFILES:%.c=$(OBJECTDIR)/%.o)
+SOURCEFILES=mymemcpy.c mystrlen.c
+SOURCES=$(patsubst %.c,$(SOURCEDIR)/%.c,$(SOURCEFILES))
+OBJECTS=$(patsubst %.c,$(OBJECTDIR)/%.o,$(SOURCEFILES))
 TARGET=libmystdlib.a
 
 all: $(TARGET)
@@ -15,8 +15,8 @@ all: $(TARGET)
 $(TARGET): $(OBJECTDIR) $(OBJECTS)
 	$(AR) $(ARFLAGS) $@ $ $(OBJECTS)
 
-$(OBJECTS): $(SOURCES)
-	$(CC) $(CFLAGS) $< -o $@
+$(OBJECTDIR)/%.o: $(SOURCEDIR)/%.c
+	$(CC) -c $(CFLAGS) -o $@ $< 
 
 $(OBJECTDIR):
 	mkdir -p $@
