@@ -164,7 +164,7 @@ void SimpleAsciiString::Insert(const SimpleAsciiString& other, int index) {
 void SimpleAsciiString::Remove(int startingIndex, int removedCharactersCount) {
 
     if (0 <= startingIndex && startingIndex < m_length && 0 < removedCharactersCount) {
-        memmove(m_buf + startingIndex, m_buf + startingIndex + removedCharactersCount, removedCharactersCount);
+        mymemmove(m_buf + startingIndex, m_buf + startingIndex + removedCharactersCount, removedCharactersCount);
         m_length -= removedCharactersCount;
     }
 }
