@@ -5,8 +5,7 @@
 
 #include "Navmii.ProgrammingTest.SimpleAsciiString.h"
 
-using namespace Navmii;
-using namespace ProgrammingTest;
+using namespace Navmii::ProgrammingTest;
 
 #define MAX(x, y) (((x) > (y)) ? (x) : (y))
 #define MIN(x, y) (((x) < (y)) ? (x) : (y))

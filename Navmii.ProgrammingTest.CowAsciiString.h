@@ -1,3 +1,6 @@
+#include <unordered_map>
+#include <string>
+
 /*
 
  (C) Copyright 2012 Navmii Holdings plc.
@@ -51,6 +54,8 @@
  In the first place we prefer simple, clean, easy-to-read, and, of course, correct code.
 
 */
+
+#include "Navmii.ProgrammingTest.SimpleAsciiStringHash.h"
 
 #ifndef NAVMII_PROGRAMMING_TEST_COW_ASCII_STRING_H
 #define NAVMII_PROGRAMMING_TEST_COW_ASCII_STRING_H
@@ -271,6 +276,10 @@ namespace Navmii { namespace ProgrammingTest
         void ToPlainString(/*out*/char* outputBuffer, int maxOutputBufferSize) const;
 
         /**@}*/
+
+    private:
+        typedef std::unordered_map<SimpleAsciiString, int, SimpleAsciiStringHash<SimpleAsciiString> > StringsT;
+        StringsT m_strings;
     };
 }}
 

@@ -1,5 +1,5 @@
-#ifndef NAVMII_PROGRAMMING_TEST_COW_ASCII_STRING_H
-#define NAVMII_PROGRAMMING_TEST_COW_ASCII_STRING_H
+#ifndef NAVMII_PROGRAMMING_TEST_SIMPLE_ASCII_STRING_H
+#define NAVMII_PROGRAMMING_TEST_SIMPLE_ASCII_STRING_H
 
 #include <iostream>
 
@@ -267,5 +267,5 @@ namespace Navmii { namespace ProgrammingTest
     std::ostream& operator<< (std::ostream& os, const SimpleAsciiString& str);
 }}
 
-#endif // NAVMII_PROGRAMMING_TEST_COW_ASCII_STRING_H
+#endif // NAVMII_PROGRAMMING_TEST_SIMPLE_ASCII_STRING_H
 
