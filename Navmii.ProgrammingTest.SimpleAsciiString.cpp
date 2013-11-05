@@ -1,6 +1,5 @@
 #include <cstddef>
 #include <ostream>
-#include <string.h>
 
 #include <mystring.h>
 
@@ -189,7 +188,7 @@ bool SimpleAsciiString::Find(char character, /*out*/int& foundIndex) const {
 bool SimpleAsciiString::Find(const SimpleAsciiString& substring, /*out*/int& foundIndex) const {
 
     if (NULL != m_buf) {
-        char* p = strstr(m_buf, substring.m_buf);
+        char* p = mystrstr(m_buf, substring.m_buf);
         if (NULL != p) {
             foundIndex = p - m_buf;
             return true;
